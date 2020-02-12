@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -35,9 +35,79 @@ room['treasure'].s_to = room['narrow']
 
 #
 # Main
-#
+# selection = 0
+# REPL
+# while selection != len(s.categories) + 1:
+#     get input from user
+#     selection = input('Select the number of the department ')
+#     print the selection
+#     print(f'The user selected {selection}')
+#     try:
+#         selection = int(selection)
+#         exit clause
+#         if selection == len(s.categories) + 1:
+#             print(f'Thank you for shopping at {s.name}')
+#         elif selection > 0 and selection <= len(s.categories):
+#             print(s.categories[selection - 1])
+#         else:
+#             print('please select a valid number.')
+#     except ValueError:
+#         print('Please enter you choice as a number')
+
 
 # Make a new player object that is currently in the 'outside' room.
+player_outside = Player(room["outside"])
+current_room = player_outside.room
+print(f"player is currently in {current_room}")
+user_input = ""
+while user_input == "":
+    user_input = input("Type in your direction ")
+    try:
+        if user_input == "n" and current_room ==  Player(room["outside"]).room:
+            player_outside = Player(room["outside"].n_to)
+            current_room = player_outside.room
+            print(f"player is currently in {current_room}")
+            user_input = ""
+        elif user_input == "n" and current_room ==  Player(room["foyer"]).room:
+            player_outside = Player(room["foyer"].n_to)
+            current_room = player_outside.room
+            print(f"player is currently in {current_room}")
+            user_input = ""
+        elif user_input == "n" and current_room ==  Player(room["narrow"]).room:
+            player_outside = Player(room["narrow"].n_to)
+            current_room = player_outside.room
+            print(f"player is currently in {current_room}")
+            user_input = ""
+        elif user_input == "s" and current_room ==  Player(room["foyer"]).room:
+            player_outside = Player(room["foyer"].s_to)
+            current_room = player_outside.room
+            print(f"player is currently in {current_room}")
+            user_input = ""
+        elif user_input == "s" and current_room ==  Player(room["overlook"]).room:
+            player_outside = Player(room["overlook"].s_to)
+            current_room = player_outside.room
+            print(f"player is currently in {current_room}")
+            user_input = ""
+        elif user_input == "s" and current_room ==  Player(room["treasure"]).room:
+            player_outside = Player(room["treasure"].s_to)
+            current_room = player_outside.room
+            print(f"player is currently in {current_room}")
+            user_input = ""
+        elif user_input == "e" and current_room ==  Player(room["foyer"]).room:
+            player_outside = Player(room["foyer"].e_to)
+            current_room = player_outside.room
+            print(f"player is currently in {current_room}")
+            user_input = ""
+        elif user_input == "w" and current_room ==  Player(room["narrow"]).room:
+            player_outside = Player(room["narrow"].w_to)
+            current_room = player_outside.room
+            print(f"player is currently in {current_room}")
+            user_input = ""
+        elif user_input == "q":
+            print("--Game Over---Thankyou for playing--")
+            
+    except ValueError:
+        print('Please enter you choice as either n,w,e or s')
 
 # Write a loop that:
 #
