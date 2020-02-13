@@ -83,6 +83,7 @@ user_input = ""
 pick_items = "default"
 playeritems = []
 roomname = "outside"
+takeordrop = ""
 
 
 def displayusercommand(user_input, roomname):
@@ -104,14 +105,15 @@ def displayusercommand(user_input, roomname):
 
     def removeitem(pick_items, roomname):
         pick_items = itemslist[1]
-        print(f"======><====== {pick_items} {roomname}")
-        if roomname == "outside" or "foyer" or "overlook" or "narrow" or "treasure" and pick_items == "spear" or "swing" or "rope" or "wheelbarrow" or "compass" and len(item[roomname]) == 2:
+        takeordrop = itemslist[0]
+        if roomname == "outside" or "foyer" or "overlook" or "narrow" or "treasure" and pick_items == "spear" or "swing" or "rope" or "wheelbarrow" or "compass" and len(item[roomname]) == 2 and takeordrop == "get" or "take":
             item[roomname].remove(item[roomname][0])
-            print(item[roomname])
-        elif roomname == "outside" or "foyer" or "overlook" or "narrow" or "treasure" and pick_items == "spear" or "swing" or "rope" or "wheelbarrow" or "compass" or "ointment" or "rug" or "flashlight" or "shovel" or "map" and len(item[roomname]) == 1:
+        elif roomname == "outside" or "foyer" or "overlook" or "narrow" or "treasure" and pick_items == "spear" or "swing" or "rope" or "wheelbarrow" or "compass" or "ointment" or "rug" or "flashlight" or "shovel" or "map" and len(item[roomname]) == 1 and takeordrop == "get" or "take":
             item[roomname].remove(item[roomname][0])
-        elif roomname == "outside" or "foyer" or "overlook" or "narrow" or "treasure" and pick_items == "ointment" or "rug" or "flashlight" or "shovel" or "map" and len(item[roomname]) == 2:
+        elif roomname == "outside" or "foyer" or "overlook" or "narrow" or "treasure" and pick_items == "ointment" or "rug" or "flashlight" or "shovel" or "map" and len(item[roomname]) == 2 and takeordrop == "get" or "take":
             item[roomname].remove(item[roomname][1])
+        else:
+            print("Please provide the correct item name to take from the room")
     userpicksitems(itemslist)
     removeitem(pick_items, roomname)
 
@@ -137,7 +139,6 @@ while user_input == "":
                 f" \033[1;33;40m {player_outside.__str__()} \n")
             user_input = ""
         elif len(user_input.split(" ")) == 1 and user_input == "n" and current_room == Player("Mildred", room["narrow"], pickeditem[f"{pick_items}"]).room:
-            print(playeritems)
             player_outside = Player(
                 "Mildred", room["narrow"].n_to, pickeditem[f"{pick_items}"])
             roomname = "narrow"
@@ -147,7 +148,6 @@ while user_input == "":
                 f" \033[1;33;40m {player_outside.__str__()} \n")
             user_input = ""
         elif len(user_input.split(" ")) == 1 and user_input == "s" and current_room == Player("Mildred", room["foyer"], pickeditem[f"{pick_items}"]).room:
-            print(playeritems)
             player_outside = Player(
                 "Mildred", room["foyer"].s_to, pickeditem[f"{pick_items}"])
             roomname = "foyer"
@@ -157,7 +157,6 @@ while user_input == "":
                 f" \033[1;33;40m {player_outside.__str__()} \n")
             user_input = ""
         elif len(user_input.split(" ")) == 1 and user_input == "s" and current_room == Player("Mildred", room["overlook"], pickeditem[f"{pick_items}"]).room:
-            print(playeritems)
             player_outside = Player(
                 "Mildred", room["overlook"].s_to, pickeditem[f"{pick_items}"])
             roomname = "overlook"
