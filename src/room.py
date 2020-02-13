@@ -10,7 +10,7 @@ class Room:
 
     def __str__(self):
         output = ''
-        output += f'room name: {self.name}, room description: {self.description}'
+        output += f'room name: {self.name}, room description: {self.description}. The room has {len(self.item)} items.'
         item_number = 1
         for i in self.item:
             output += f' \n The {self.name} has item name: {i.name}, it can be used for {i.description}\n'

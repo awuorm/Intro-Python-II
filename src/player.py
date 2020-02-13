@@ -12,5 +12,5 @@ class Player:
         output = ''
         add_items = []
         add_items.append(self.item)
-        output += f'Player {self.name}  is in {self.room}. {self.name}'
+        output += f'Player {self.name}  is in {self.room}.'
         return output
