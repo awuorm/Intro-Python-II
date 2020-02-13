@@ -82,110 +82,98 @@ print(
 user_input = ""
 pick_items = "default"
 playeritems = []
+
+
+def displayusercommand(user_input):
+    print("You can pick the available items in this room")
+    user_input = input(
+        "  \033[1;32;40m \n Enter your command ")
+    itemslist = user_input.split(" ")
+    print(itemslist[1])
+    playeritems.append(itemslist[1])
+
+    def userpicksitems(itemslist):
+        if(len(itemslist) == 1):
+            print(f" \033[1;31;40m Wrong command, use [verb] [object] format")
+        else:
+            pick_items = itemslist[1]
+            print(
+                f" \033[1;33;40m {itemslist[1]} has been added to your arsenal. You have {len(playeritems)} items in your arsenal\n")
+            return pick_items
+    userpicksitems(itemslist)
+
+
 while user_input == "":
-    user_input = input("  \033[1;32;40m \n Type in your direction ")
+    user_input = input("  \033[1;32;40m \n Enter your command ")
     try:
-        if user_input == "n" and current_room == Player("Mildred", room["outside"], pickeditem[f"{pick_items}"]).room:
+        if len(user_input.split(" ")) == 1 and user_input == "n" and current_room == Player("Mildred", room["outside"], pickeditem[f"{pick_items}"]).room:
             player_outside = Player(
                 "Mildred", room["outside"].n_to, pickeditem[f"{pick_items}"])
-            pick_items = input(
-                "  \033[1;32;40m \n Pick item, you can only pick one item ")
-            print(
-                f" \033[1;33;40m {pick_items} has been added to your arsenal.You have {len(playeritems)} items \n")
+            displayusercommand(user_input)
             print(f" \033[1;33;40m {player_outside.__str__()}\n")
             current_room = player_outside.room
+
             user_input = ""
-            playeritems.append(pick_items)
-        elif user_input == "n" and current_room == Player("Mildred", room["foyer"], pickeditem[f"{pick_items}"]).room:
-            print(playeritems)
+        elif len(user_input.split(" ")) == 1 and user_input == "n" and current_room == Player("Mildred", room["foyer"], pickeditem[f"{pick_items}"]).room:
             player_outside = Player(
                 "Mildred", room["foyer"].n_to, pickeditem[f"{pick_items}"])
-            pick_items = input(
-                "  \033[1;32;40m \n Pick item, you can only pick one item ")
-            print(
-                f" \033[1;33;40m {pick_items} has been added to your arsenal. You have {len(playeritems)} items \n")
+            displayusercommand(user_input)
             current_room = player_outside.room
-            # current_items = player_outside.item
-            playeritems.append(pick_items)
             print(
                 f" \033[1;33;40m {player_outside.__str__()} \n")
             user_input = ""
-        elif user_input == "n" and current_room == Player("Mildred", room["narrow"], pickeditem[f"{pick_items}"]).room:
+        elif len(user_input.split(" ")) == 1 and user_input == "n" and current_room == Player("Mildred", room["narrow"], pickeditem[f"{pick_items}"]).room:
             print(playeritems)
             player_outside = Player(
                 "Mildred", room["narrow"].n_to, pickeditem[f"{pick_items}"])
-            pick_items = input(
-                "  \033[1;32;40m \n Pick item, you can only pick one item ")
-            print(
-                f" \033[1;33;40m {pick_items} has been added to your arsenal. You have {len(playeritems)} items \n")
+            displayusercommand(user_input)
             current_room = player_outside.room
-            playeritems.append(pick_items)
             print(
                 f" \033[1;33;40m {player_outside.__str__()} \n")
             user_input = ""
-        elif user_input == "s" and current_room == Player("Mildred", room["foyer"], pickeditem[f"{pick_items}"]).room:
+        elif len(user_input.split(" ")) == 1 and user_input == "s" and current_room == Player("Mildred", room["foyer"], pickeditem[f"{pick_items}"]).room:
             print(playeritems)
             player_outside = Player(
                 "Mildred", room["foyer"].s_to, pickeditem[f"{pick_items}"])
-            pick_items = input(
-                "  \033[1;32;40m \n Pick item, you can only pick one item ")
-            print(
-                f" \033[1;33;40m {pick_items} has been added to your arsenal. You have {len(playeritems)} items \n")
+            displayusercommand(user_input)
             current_room = player_outside.room
-            playeritems.append(pick_items)
             print(
                 f" \033[1;33;40m {player_outside.__str__()} \n")
             user_input = ""
-        elif user_input == "s" and current_room == Player("Mildred", room["overlook"], pickeditem[f"{pick_items}"]).room:
+        elif len(user_input.split(" ")) == 1 and user_input == "s" and current_room == Player("Mildred", room["overlook"], pickeditem[f"{pick_items}"]).room:
             print(playeritems)
             player_outside = Player(
                 "Mildred", room["overlook"].s_to, pickeditem[f"{pick_items}"])
-            pick_items = input(
-                "  \033[1;32;40m \n Pick item, you can only pick one item ")
-            print(
-                f" \033[1;33;40m {pick_items} has been added to your arsenal. You have {len(playeritems)} items \n")
+            displayusercommand(user_input)
             current_room = player_outside.room
-            playeritems.append(pick_items)
             print(
                 f" \033[1;33;40m {player_outside.__str__()} \n")
             user_input = ""
-        elif user_input == "s" and current_room == Player("Mildred", room["treasure"], pickeditem[f"{pick_items}"]).room:
+        elif len(user_input.split(" ")) == 1 and user_input == "s" and current_room == Player("Mildred", room["treasure"], pickeditem[f"{pick_items}"]).room:
             player_outside = Player(
                 "Mildred", room["treasure"].s_to, pickeditem[f"{pick_items}"])
-            pick_items = input(
-                "  \033[1;32;40m \n Pick item, you can only pick one item ")
-            print(
-                f" \033[1;33;40m {pick_items} has been added to your arsenal. You have {len(playeritems)} items \n")
+            displayusercommand(user_input)
             current_room = player_outside.room
-            playeritems.append(pick_items)
             print(
                 f" \033[1;33;40m {player_outside.__str__()} \n")
             user_input = ""
-        elif user_input == "e" and current_room == Player("Mildred", room["foyer"], pickeditem[f"{pick_items}"]).room:
+        elif len(user_input.split(" ")) == 1 and user_input == "e" and current_room == Player("Mildred", room["foyer"], pickeditem[f"{pick_items}"]).room:
             player_outside = Player(
                 "Mildred", room["foyer"].e_to, pickeditem[f"{pick_items}"])
-            pick_items = input(
-                "  \033[1;32;40m \n Pick item, you can only pick one item ")
-            print(
-                f" \033[1;33;40m {pick_items} has been added to your arsenal. You have {len(playeritems)} items \n")
+            displayusercommand(user_input)
             current_room = player_outside.room
-            playeritems.append(pick_items)
             print(
                 f" \033[1;33;40m {player_outside.__str__()} \n")
             user_input = ""
-        elif user_input == "w" and current_room == Player("Mildred", room["narrow"], pickeditem[f"{pick_items}"]).room:
+        elif len(user_input.split(" ")) == 1 and user_input == "w" and current_room == Player("Mildred", room["narrow"], pickeditem[f"{pick_items}"]).room:
             player_outside = Player(
                 "Mildred", room["narrow"].w_to, pickeditem[f"{pick_items}"])
-            pick_items = input(
-                "  \033[1;32;40m \n Pick item, you can only pick one item ")
-            print(
-                f" \033[1;33;40m {pick_items} has been added to your arsenal. You have {len(playeritems)} items \n")
+            displayusercommand(user_input)
             current_room = player_outside.room
-            playeritems.append(pick_items)
             print(
                 f" \033[1;33;40m {player_outside.__str__()} \n")
             user_input = ""
-        elif user_input == "q":
+        elif len(user_input.split(" ")) == 1 and user_input == "q":
             print("\033[1;34;40m --Game Over---Thankyou for playing--  \n")
         else:
             print(
